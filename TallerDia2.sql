@@ -113,7 +113,12 @@ values ('Avengers 1', 2011 ,'A')
 
 insert into Movies(NombreMovie, AnioMovie, Estado)
 values ('Avengers 2 la era de ultron', 2018, 'A')
+
+insert into MovieStore..Movies(NombreMovie, AnioMovie, Estado)
+values ('Avengers End Game', 2020, 'A')
+
 */
+
 
 select * from EmpresaMovie
 
@@ -211,3 +216,46 @@ from Movies
 
 
 select * from ##TablaGlob1
+
+----Extracciones de datos de base a base
+
+
+select top 3 * from AdventureWorks2014.Production.Product
+
+select * from MovieStore..Movies
+
+insert into MovieStore..Movies(NombreMovie, AnioMovie, Estado, FechaRegistro)
+select
+a.Name,
+YEAR(a.SellStartDate),
+'A',
+a.ModifiedDate
+from AdventureWorks2014.Production.Product a
+where not exists (select 1 from MovieStore..Movies b where b.NombreMovie = a.Name collate Modern_Spanish_CI_AI) 
+
+
+select
+*
+from AdventureWorks2014.Production.Product a
+where exists (select 1 from MovieStore..Movies b where b.NombreMovie = a.Name collate Modern_Spanish_CI_AI) 
+
+select
+*
+from AdventureWorks2014.Production.Product a
+where a.Name in (select b.NombreMovie collate Modern_Spanish_CI_AI from MovieStore..Movies b) 
+
+
+select
+*
+from AdventureWorks2014.Production.Product a
+where a.Name not in (select b.NombreMovie collate Modern_Spanish_CI_AI from MovieStore..Movies b) 
+
+
+delete from MovieStore..Movies where IdMovie > 4
+
+--truncate table MovieStore..Movies
+
+-----UPDATE
+update MovieStore..Movies
+set NombreMovie = NombreMovie + '-' + 'DEPRECATED'
+where AnioMovie < 1990
