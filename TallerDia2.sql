@@ -158,7 +158,56 @@ declare @Tabla1 table
 	FechaRegistro datetime default getdate()
 )
 
-insert into @Tabla1(NombreMovie, AnioMovie, Estado)
+insert into @Tabla1(IdMovie, NombreMovie, AnioMovie, Estado)
+select IdMovie, NombreMovie, AnioMovie, Estado from Movies
 
+update @Tabla1 set NombreMovie = NombreMovie + '-' + 'TMP'
 
 select * from @Tabla1 
+
+select * from Movies
+
+
+/**********************************************/
+/******TABLAS TEMPORALES DE SESSION - GLOBALES*****/
+/**********************************************/
+
+---#temporal local fisica en tempdb
+---##temporal global fisica
+
+---#temporal local fisica en tempdb
+---Puede realizar creaciones de de index
+
+
+---session
+select IdMovie, NombreMovie, AnioMovie, Estado 
+into #TablaTemp1
+from Movies
+
+select * from #TablaTemp1
+
+--drop table #TablaTemp1
+
+create table #TablaTemp2
+(
+	Secuencial int identity(1,1),
+	IdMovie int,
+	NombreMovie varchar(200),
+	AnioMovie int,
+	Estado char(1),
+	FechaRegistro datetime default getdate()
+)
+
+insert into #TablaTemp2(IdMovie, NombreMovie, AnioMovie, Estado)
+select IdMovie, NombreMovie, AnioMovie, Estado from Movies
+
+select * from #TablaTemp2
+
+--Gloables
+
+select IdMovie, NombreMovie, AnioMovie, Estado 
+into ##TablaGlob1
+from Movies
+
+
+select * from ##TablaGlob1
