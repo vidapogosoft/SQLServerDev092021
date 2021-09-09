@@ -21,6 +21,29 @@ sp_configure 'Database Mail XPs', 1
 reconfigure
 go
 
+
+sp_configure 'show advanced options', 1;  
+GO  
+RECONFIGURE;  
+GO  
+sp_configure 'Database Mail XPs', 1;  
+GO  
+RECONFIGURE  
+GO  
+
+
+IF EXISTS (
+    SELECT 1 FROM sys.configurations 
+    WHERE NAME = 'Database Mail XPs' AND VALUE = 0)
+BEGIN
+  PRINT 'Enabling Database Mail XPs'
+  EXEC sp_configure 'show advanced options', 1;  
+  RECONFIGURE
+  EXEC sp_configure 'Database Mail XPs', 1;  
+  RECONFIGURE  
+END
+
+
 ---Creamos un perfil de Email
 
 execute  msdb.dbo.sysmail_add_profile_sp
