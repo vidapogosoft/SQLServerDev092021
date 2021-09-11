@@ -1,0 +1,1 @@
+dtexec /F "D:\vidapogosoft\cursos\2021\SIPECOM\Package.dtsx"
