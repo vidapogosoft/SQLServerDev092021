@@ -62,7 +62,7 @@ execute msdb.dbo.sysmail_add_profileaccount_sp
 exec msdb.dbo.sp_send_dbmail
 @profile_name = 'NotificationsVPR',
 @recipients = 'vidapogosoft@gmail.com',
-@body = 'Ejemplo de database email con transact sql',
+@body = 'Ejemplo de database email con transact sql -- envio 2',
 @subject = 'Automatic Email - SIPECOM SEPTIEMBRE 2021'
 
 
@@ -81,7 +81,7 @@ EXEC msdb.dbo.sp_send_dbmail
      @profile_name = 'NotificationsVPR',
      @recipients = 'vidapogosoft@gmail.com',
      @query = 'SELECT top 1000 * FROM AdventureWorks2014.Production.WorkOrder order by EndDate desc',
-     @subject = 'Work Order top 100',
+     @subject = 'Work Order top 100 -- envio 2',
      @attach_query_result_as_file = 1 ;
 
 
@@ -90,7 +90,7 @@ EXEC msdb.dbo.sp_send_dbmail
 exec msdb.dbo.sp_send_dbmail
 @profile_name = 'NotificationsVPR',
 @Recipients= 'vidapogosoft@gmail.com',
-@Subject= 'ejemplo csv',
+@Subject= 'ejemplo csv -- envio 2',
 @Body= 'ejemplo csv',
 @query = 'SELECT top 1000 * FROM AdventureWorks2014.Production.WorkOrder',
 @attach_query_result_as_file = 1,
@@ -131,7 +131,7 @@ SET @tableHTML =
 EXEC msdb.dbo.sp_send_dbmail
      @profile_name = 'NotificationsVPR',
      @recipients = 'vidapogosoft@gmail.com',
-     @subject = 'Work Order Count 5000',
+     @subject = 'Work Order Count 5000 -- envio 2',
 	 @body = @tableHTML,
 	 @body_format = 'HTML'
 
