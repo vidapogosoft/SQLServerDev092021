@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="9/9/2021 9:06:20 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="HP1-VPR"
+  DTS:CreatorName="HP1-VPR\vidapogosoft"
+  DTS:DTSID="{C879531F-2713-4167-AA8A-1BD190F39C9A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.167"
+  DTS:LocaleID="12298"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionGUID="{0B78A7D4-663D-4BC6-8268-16133E146C3F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables />
+</DTS:Executable>
